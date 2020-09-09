@@ -23,13 +23,19 @@ public class CategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         RecyclerView.ViewHolder vh;
         switch (viewType){
-            case TYPE1 : vh =  new ViewHolderType1(
-                    LayoutInflater.from(parent.getContext()).inflate(R.layout.category_item1, parent, false)
-            );
+            case TYPE1 : {
+                vh = new ViewHolderType1(
+                        LayoutInflater.from(parent.getContext()).inflate(R.layout.category_item1, parent, false)
+                );
+                break;
+            }
 
-            case TYPE2 : vh = new ViewHolderType2(
-                    LayoutInflater.from(parent.getContext()).inflate(R.layout.category_item1, parent, false)
-            );
+            case TYPE2 : {
+                vh = new ViewHolderType2(
+                        LayoutInflater.from(parent.getContext()).inflate(R.layout.category_item1, parent, false)
+                );
+                break;
+            }
 
             default: vh = new ViewHolderType3(
                     LayoutInflater.from(parent.getContext()).inflate(R.layout.category_item1, parent, false)

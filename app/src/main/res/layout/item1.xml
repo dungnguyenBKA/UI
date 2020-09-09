@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:layout_marginEnd="5dp"
+    android:layout_marginStart="5dp"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:adjustViewBounds="true"
+        android:id="@+id/logo_toon"
+        android:src="@drawable/logotoon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/name_toon"
+        android:text="Tên truyện"
+        android:layout_below="@+id/logo_toon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/chapter"
+        android:text="Chapter 1"
+        android:layout_below="@+id/name_toon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+</RelativeLayout>

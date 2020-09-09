@@ -2,6 +2,7 @@ package com.example.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.ui.adapter.CategoryAdapter
 import com.example.ui.api.Service
 import com.example.ui.model.Data
 import com.example.ui.model.Datum
@@ -42,8 +43,13 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 override fun onError(e: Throwable?) {
+                    handleError(e)
                 }
             })
+    }
+
+    private fun handleError(e: Throwable?) {
+
     }
 
     override fun onDestroy() {
@@ -52,6 +58,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun handleData(data: List<Datum>) {
-
+        val adapter = CategoryAdapter()
+        listcategory_rv.adapter = adapter
+        adapter.updateListDatum(data)
     }
 }

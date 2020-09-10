@@ -6,7 +6,7 @@ import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 
 
-class ImageUtils {
+class LoadImage {
     companion object {
         fun loadImage(url: String, iv: ImageView) {
             Glide.with(iv.context)

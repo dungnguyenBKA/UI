@@ -3,6 +3,7 @@ package com.example.ui.adapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ui.R;
 import com.example.ui.model.Datum;
+import com.example.ui.utils.LoadImage;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +30,12 @@ public class CategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         RecyclerView.ViewHolder vh;
         switch (viewType){
+            case TYPE0  : {
+                vh = new ViewHolderBanner(
+                        LayoutInflater.from(parent.getContext()).inflate(R.layout.banner, parent, false)
+                );
+                break;
+            }
             case TYPE1 : {
                 vh = new ViewHolderType1(
                         LayoutInflater.from(parent.getContext()).inflate(R.layout.category_item1, parent, false)
@@ -59,7 +67,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
             case TYPE5 : {
                 vh = new ViewHolderType5(
-                        LayoutInflater.from(parent.getContext()).inflate(R.layout.category_item1, parent, false)
+                        LayoutInflater.from(parent.getContext()).inflate(R.layout.represent_category, parent, false)
                 );
                 break;
             }
@@ -74,6 +82,11 @@ public class CategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+        if(holder instanceof ViewHolderBanner){
+            ((ViewHolderBanner) holder).bindView(datumList.get(position));
+            return;
+        }
+
         if(holder instanceof ViewHolderType1){
             ((ViewHolderType1) holder).bindView(datumList.get(position));
             return;
@@ -82,6 +95,20 @@ public class CategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         if(holder instanceof ViewHolderType2){
             ((ViewHolderType2) holder).bindView(datumList.get(position));
             return;
+        }
+
+        if(holder instanceof ViewHolderType3){
+            ((ViewHolderType3) holder).bindView(datumList.get(position));
+            return;
+        }
+
+        if(holder instanceof ViewHolderType4){
+            ((ViewHolderType4) holder).bindView(datumList.get(position));
+            return;
+        }
+
+        if(holder instanceof ViewHolderType5){
+            ((ViewHolderType5) holder).bindView(datumList.get(position));
         }
     }
 
@@ -113,6 +140,19 @@ public class CategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         }
     }
 
+    static class ViewHolderBanner extends RecyclerView.ViewHolder{
+        ImageView bannerIv;
+        public ViewHolderBanner(@NonNull View itemView) {
+            super(itemView);
+            bannerIv = itemView.findViewById(R.id.banner_img);
+        }
+
+        void bindView(Datum datum){
+            String url = "https://dev-cdn.funtoon.vn/" + datum.getCovers().get(0).getLink();
+            LoadImage.Companion.loadImage(url, bannerIv);
+        }
+    }
+
     static class ViewHolderType1 extends RecyclerView.ViewHolder{
         TextView cateName;
         TextView cateOpt;
@@ -131,39 +171,74 @@ public class CategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     static class ViewHolderType2 extends RecyclerView.ViewHolder{
         TextView cateName;
         TextView cateOpt;
+        RecyclerView innerRv;
         public ViewHolderType2(@NonNull View itemView) {
             super(itemView);
             cateName = itemView.findViewById(R.id.cate_name);
             cateOpt = itemView.findViewById(R.id.cate_option);
+            innerRv = itemView.findViewById(R.id.inner_rv);
         }
 
         void bindView(Datum datum){
             cateName.setText(datum.getTypeName());
             cateOpt.setText("Xem tất cả");
+            InnerAdapter innerAdapter = new InnerAdapter();
+            innerRv.setAdapter(innerAdapter);
+            innerAdapter.setContentList(datum.getContent());
         }
     }
 
     static class ViewHolderType3 extends RecyclerView.ViewHolder{
         TextView cateName;
         TextView cateOpt;
+        RecyclerView innerRv;
         public ViewHolderType3(@NonNull View itemView) {
             super(itemView);
+            cateName = itemView.findViewById(R.id.cate_name);
+            cateOpt = itemView.findViewById(R.id.cate_option);
+            innerRv = itemView.findViewById(R.id.inner_rv);
+        }
+
+        void bindView(Datum datum){
+            cateName.setText(datum.getTypeName());
+            cateOpt.setText("Xem tất cả");
+            InnerAdapter innerAdapter = new InnerAdapter();
+            innerRv.setAdapter(innerAdapter);
+            innerAdapter.setContentList(datum.getContent());
         }
     }
 
     static class ViewHolderType4 extends RecyclerView.ViewHolder{
         TextView cateName;
         TextView cateOpt;
+        RecyclerView innerRv;
         public ViewHolderType4(@NonNull View itemView) {
             super(itemView);
+            cateName = itemView.findViewById(R.id.cate_name);
+            cateOpt = itemView.findViewById(R.id.cate_option);
+            innerRv = itemView.findViewById(R.id.inner_rv);
+        }
+
+        void bindView(Datum datum){
+            cateName.setText(datum.getTypeName());
+            cateOpt.setText("Xem tất cả");
+            InnerAdapter innerAdapter = new InnerAdapter();
+            innerRv.setAdapter(innerAdapter);
+            innerAdapter.setContentList(datum.getContent());
         }
     }
 
     static class ViewHolderType5 extends RecyclerView.ViewHolder{
-        TextView cateName;
-        TextView cateOpt;
+        RecyclerView innerRv;
         public ViewHolderType5(@NonNull View itemView) {
             super(itemView);
+            innerRv = itemView.findViewById(R.id.represent_categorys_rv);
+        }
+
+        void bindView(Datum datum){
+            InnerAdapter innerAdapter = new InnerAdapter();
+            innerRv.setAdapter(innerAdapter);
+            innerAdapter.setContentList(datum.getContent());
         }
     }
 

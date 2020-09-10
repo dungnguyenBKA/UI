@@ -15,15 +15,17 @@
         android:layout_height="140dp"/>
 
     <TextView
-        android:layout_marginTop="10dp"
         android:id="@+id/name_toon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/logo_toon"
+        android:layout_marginTop="10dp"
+        android:ellipsize="end"
+        android:fontFamily="@font/nunito_sans_semibold"
+        android:maxLines="2"
         android:text="Tên truyện"
         android:textColor="@color/textBlack"
-        android:fontFamily="@font/nunito_sans"
-        android:textSize="14sp"
-        android:layout_below="@+id/logo_toon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:textSize="14sp" />
 
     <TextView
         android:layout_marginTop="5dp"

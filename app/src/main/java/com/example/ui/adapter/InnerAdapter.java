@@ -73,9 +73,16 @@ public class InnerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         }
 
         public void bindView(Content content){
-            String url = "https://dev-cdn.funtoon.vn/" + content.getHorizontalLogo();
-            LoadImage.Companion.loadImage(url, logoToon);
+
+            String url = (content.getHorizontalLogo() == null) ?  "https://dev-cdn.funtoon.vn/" + content.getVerticalLogo()
+                    : "https://dev-cdn.funtoon.vn/" + content.getHorizontalLogo();
+            LoadImage.Companion.loadImage(url, logoToon, 12);
             nameToon.setText(content.getComicName());
+            if(content.getNewestChapter() == null){
+                chapter.setVisibility(View.INVISIBLE);
+                return;
+            }
+            chapter.setText("Chương " + content.getNewestChapter());
         }
     }
 }

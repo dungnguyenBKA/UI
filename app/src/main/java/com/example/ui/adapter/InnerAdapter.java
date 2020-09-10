@@ -34,22 +34,18 @@ public class InnerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        //return new InnerVH(LayoutInflater.from(parent.getContext()).inflate(R.layout.item1, parent, false));
-        if(viewType == INNERTYPE1){
-            return new InnerVH(LayoutInflater.from(parent.getContext()).inflate(R.layout.item1, parent, false));
-        }else {
-            return new InnerRepresentVH(LayoutInflater.from(parent.getContext()).inflate(R.layout.represent_category_item, parent, false));
-        }
+        return new InnerVH(LayoutInflater.from(parent.getContext()).inflate(R.layout.item1, parent, false));
+//        if(viewType == INNERTYPE1){
+//            return new InnerVH(LayoutInflater.from(parent.getContext()).inflate(R.layout.item1, parent, false));
+//        }else {
+//            return new InnerRepresentVH(LayoutInflater.from(parent.getContext()).inflate(R.layout.represent_category_item, parent, false));
+//        }
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         if(holder instanceof InnerVH){
             ((InnerVH) holder).bindView(contentList.get(position));
-            return;
-        }
-        if(holder instanceof InnerRepresentVH){
-            ((InnerRepresentVH) holder).bindView(contentList.get(position));
         }
     }
 
@@ -60,12 +56,10 @@ public class InnerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
     @Override
     public int getItemViewType(int position) {
-        switch (contentList.get(position).getType()){
-            case "web_toon":
-                return INNERTYPE1;
-            default:
-                return INNERTYPE2;
+        if ("web_toon".equals(contentList.get(position).getType())) {
+            return INNERTYPE1;
         }
+        return INNERTYPE2;
     }
 
     static class InnerVH extends RecyclerView.ViewHolder{
@@ -82,21 +76,6 @@ public class InnerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             String url = "https://dev-cdn.funtoon.vn/" + content.getHorizontalLogo();
             LoadImage.Companion.loadImage(url, logoToon);
             nameToon.setText(content.getComicName());
-        }
-    }
-
-    static class InnerRepresentVH extends RecyclerView.ViewHolder{
-        TextView cate_name;
-        TextView option;
-        public InnerRepresentVH(@NonNull View itemView) {
-            super(itemView);
-            cate_name = itemView.findViewById(R.id.rc_cate_name);
-            option = itemView.findViewById(R.id.rc_cate_option);
-        }
-
-        public void bindView(Content content){
-            cate_name.setText(content.getCategoryVietName());
-            option.setText("Xem tất cả");
         }
     }
 }

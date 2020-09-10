@@ -236,7 +236,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         }
 
         void bindView(Datum datum){
-            InnerAdapter innerAdapter = new InnerAdapter();
+            RepresentCategoryAdapter innerAdapter = new RepresentCategoryAdapter();
             innerRv.setAdapter(innerAdapter);
             innerAdapter.setContentList(datum.getContent());
         }

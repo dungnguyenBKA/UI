@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">UI</string>
+    <string name="slug">Thể loại</string>
+    <string name="vote">4.0 (10.2K)</string>
+    <string name="name">Tên truyện</string>
 </resources>

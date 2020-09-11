@@ -47,7 +47,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
         android:layout_marginLeft="15dp"
-        android:text="Tên truyện"
+        android:text="@string/name"
         android:maxLines="1"
         android:ellipsize="end"
         android:textColor="@color/textBlack"
@@ -55,6 +55,8 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:textColor="#8A8A8F"
+        android:background="@drawable/bggray"
         android:id="@+id/slug_toon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -66,7 +68,7 @@
         android:paddingTop="4dp"
         android:paddingEnd="10dp"
         android:paddingBottom="4dp"
-        android:text="Thể loại"
+        android:text="@string/slug"
         app:layout_constraintStart_toEndOf="@+id/logo_toon"
         app:layout_constraintTop_toBottomOf="@+id/name_toon" />
 
@@ -76,7 +78,7 @@
         android:layout_marginStart="15dp"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="10dp"
-        android:text="4.0 (10.2K)"
+        android:text="@string/vote"
         app:layout_constraintStart_toEndOf="@+id/logo_toon"
         app:layout_constraintTop_toBottomOf="@+id/slug_toon" />
 </androidx.constraintlayout.widget.ConstraintLayout>

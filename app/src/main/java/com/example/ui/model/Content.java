@@ -63,7 +63,7 @@ public class Content {
     private String categoryVietName;
     @SerializedName("comics")
     @Expose
-    private List<Comic> comics = null;
+    private List<Content> comics = null;
     @SerializedName("comicsReviewNewest")
     @Expose
     private List<Object> comicsReviewNewest = null;
@@ -212,11 +212,11 @@ public class Content {
         this.categoryVietName = categoryVietName;
     }
 
-    public List<Comic> getComics() {
+    public List<Content> getComics() {
         return comics;
     }
 
-    public void setComics(List<Comic> comics) {
+    public void setComics(List<Content> comics) {
         this.comics = comics;
     }
 

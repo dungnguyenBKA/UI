@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ui.R;
@@ -39,21 +40,21 @@ public class CategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             }
             case TYPE1 : {
                 vh = new ViewHolderType1(
-                        LayoutInflater.from(parent.getContext()).inflate(R.layout.category_item1, parent, false)
+                        LayoutInflater.from(parent.getContext()).inflate(R.layout.category_item, parent, false)
                 );
                 break;
             }
 
             case TYPE2 : {
                 vh = new ViewHolderType2(
-                        LayoutInflater.from(parent.getContext()).inflate(R.layout.category_item1, parent, false)
+                        LayoutInflater.from(parent.getContext()).inflate(R.layout.category_item, parent, false)
                 );
                 break;
             }
 
             case TYPE3 : {
                 vh = new ViewHolderType3(
-                        LayoutInflater.from(parent.getContext()).inflate(R.layout.category_item1, parent, false)
+                        LayoutInflater.from(parent.getContext()).inflate(R.layout.category_item, parent, false)
                 );
                 break;
             }
@@ -61,7 +62,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
             case TYPE4 : {
                 vh = new ViewHolderType4(
-                        LayoutInflater.from(parent.getContext()).inflate(R.layout.category_item1, parent, false)
+                        LayoutInflater.from(parent.getContext()).inflate(R.layout.category_item, parent, false)
                 );
                 break;
             }
@@ -74,7 +75,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             }
 
             default: vh = new ViewHolderType3(
-                    LayoutInflater.from(parent.getContext()).inflate(R.layout.category_item1, parent, false)
+                    LayoutInflater.from(parent.getContext()).inflate(R.layout.category_item, parent, false)
             );
         }
 
@@ -252,10 +253,10 @@ public class CategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         }
 
         void bindView(Datum datum){
-            //this.smoothSwipe(innerRv);
             cateName.setText(datum.getTypeName());
             cateOpt.setText("Xem tất cả");
-            InnerAdapter innerAdapter = new InnerAdapter();
+            InnerGridAdapter innerAdapter = new InnerGridAdapter();
+            innerRv.setLayoutManager(new GridLayoutManager(innerRv.getContext(), 3, GridLayoutManager.HORIZONTAL, false));
             innerRv.setAdapter(innerAdapter);
             innerAdapter.setContentList(datum.getContent());
         }
@@ -269,7 +270,6 @@ public class CategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         }
 
         void bindView(Datum datum){
-            //this.smoothSwipe(innerRv);
             RepresentCategoryAdapter innerAdapter = new RepresentCategoryAdapter();
             innerRv.setAdapter(innerAdapter);
             innerAdapter.setContentList(datum.getContent());

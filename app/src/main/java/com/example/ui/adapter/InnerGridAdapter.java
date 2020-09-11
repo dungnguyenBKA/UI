@@ -16,7 +16,7 @@ import com.example.ui.utils.LoadImage;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RepresentCategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class InnerGridAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     List<Content> contentList = new ArrayList<>();
 
     public void setContentList(List<Content> contentList) {
@@ -32,13 +32,13 @@ public class RepresentCategoryAdapter extends RecyclerView.Adapter<RecyclerView.
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new InnerPresenterCategoryVH(LayoutInflater.from(parent.getContext()).inflate(R.layout.represent_category_item, parent, false));
+        return new InnerGridVH(LayoutInflater.from(parent.getContext()).inflate(R.layout.item4, parent, false));
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        if(holder instanceof InnerPresenterCategoryVH){
-            ((InnerPresenterCategoryVH) holder).bindView(contentList.get(position));
+        if(holder instanceof InnerGridVH){
+            ((InnerGridVH) holder).bindView(contentList.get(position));
         }
     }
 
@@ -47,24 +47,24 @@ public class RepresentCategoryAdapter extends RecyclerView.Adapter<RecyclerView.
         return (contentList == null)? 0 : contentList.size();
     }
 
-    static class InnerPresenterCategoryVH extends RecyclerView.ViewHolder{
-        TextView cate_name;
-        TextView cate_option;
-        RecyclerView innerRv;
-        public InnerPresenterCategoryVH(@NonNull View itemView) {
+    static class InnerGridVH extends RecyclerView.ViewHolder{
+        ImageView logoToon;
+        TextView nameToon, slug, number;
+        public InnerGridVH(@NonNull View itemView) {
             super(itemView);
-            cate_option = itemView.findViewById(R.id.rc_cate_option);
-            cate_name = itemView.findViewById(R.id.rc_cate_name);
-            innerRv = itemView.findViewById(R.id.list_toon);
+            logoToon = itemView.findViewById(R.id.logo_toon);
+            nameToon = itemView.findViewById(R.id.name_toon);
+            slug = itemView.findViewById(R.id.slug_toon);
+            number = itemView.findViewById(R.id.number_toon);
         }
 
         public void bindView(Content content){
-            cate_option.setText("Xem tất cả");
-            cate_name.setText(content.getCategoryVietName());
-
-            InnerAdapter innerAdapter = new InnerAdapter();
-            innerAdapter.setContentList(content.getComics());
-            innerRv.setAdapter(innerAdapter);
+            String url = "https://dev-cdn.funtoon.vn/" + content.getVerticalLogo();
+            LoadImage.Companion.loadImage(url, logoToon, 20);
+            nameToon.setText(content.getComicName());
+            slug.setText(content.getCategories().get(0).getCategoryVietName());
+            number.setText(String.valueOf(getAdapterPosition()+1));
         }
     }
 }
+

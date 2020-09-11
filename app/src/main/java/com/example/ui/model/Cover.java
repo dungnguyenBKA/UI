@@ -12,9 +12,6 @@ public class Cover {
     @SerializedName("_id")
     @Expose
     private String id;
-    @SerializedName("author")
-    @Expose
-    private Author author;
     @SerializedName("title")
     @Expose
     private String title;
@@ -27,9 +24,6 @@ public class Cover {
     @SerializedName("link")
     @Expose
     private String link;
-    @SerializedName("description")
-    @Expose
-    private String description;
     @SerializedName("comicId")
     @Expose
     private String comicId;
@@ -42,6 +36,9 @@ public class Cover {
     @SerializedName("comicName")
     @Expose
     private String comicName;
+    @SerializedName("author")
+    @Expose
+    private Author author;
     @SerializedName("type")
     @Expose
     private String type;
@@ -60,14 +57,6 @@ public class Cover {
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public Author getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(Author author) {
-        this.author = author;
     }
 
     public String getTitle() {
@@ -102,14 +91,6 @@ public class Cover {
         this.link = link;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public String getComicId() {
         return comicId;
     }
@@ -140,6 +121,14 @@ public class Cover {
 
     public void setComicName(String comicName) {
         this.comicName = comicName;
+    }
+
+    public Author getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(Author author) {
+        this.author = author;
     }
 
     public String getType() {

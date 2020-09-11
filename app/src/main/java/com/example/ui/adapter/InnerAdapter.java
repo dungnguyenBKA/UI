@@ -17,8 +17,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class InnerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    private static final int INNERTYPE1 = 1;
-    private static final int INNERTYPE2 = 2;
+    private static final int TYPE_VERTICAL = 1;
+    private static final int TYPE_HORIZOTAL = 2;
     List<Content> contentList = new ArrayList<>();
 
     public void setContentList(List<Content> contentList) {
@@ -34,18 +34,22 @@ public class InnerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new InnerVH(LayoutInflater.from(parent.getContext()).inflate(R.layout.item1, parent, false));
-//        if(viewType == INNERTYPE1){
-//            return new InnerVH(LayoutInflater.from(parent.getContext()).inflate(R.layout.item1, parent, false));
-//        }else {
-//            return new InnerRepresentVH(LayoutInflater.from(parent.getContext()).inflate(R.layout.represent_category_item, parent, false));
-//        }
+        if(viewType == TYPE_VERTICAL){
+            return new InnerVHVertical(LayoutInflater.from(parent.getContext()).inflate(R.layout.item1, parent, false));
+        }else {
+            return new InnerVHHorizontal(LayoutInflater.from(parent.getContext()).inflate(R.layout.item3, parent, false));
+        }
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        if(holder instanceof InnerVH){
-            ((InnerVH) holder).bindView(contentList.get(position));
+        if(holder instanceof InnerVHVertical){
+            ((InnerVHVertical) holder).bindView(contentList.get(position));
+            return;
+        }
+
+        if(holder instanceof InnerVHHorizontal){
+            ((InnerVHHorizontal) holder).bindView(contentList.get(position));
         }
     }
 
@@ -56,16 +60,16 @@ public class InnerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
     @Override
     public int getItemViewType(int position) {
-        if ("web_toon".equals(contentList.get(position).getType())) {
-            return INNERTYPE1;
+        if(contentList.get(position).getHorizontalLogo() == null){
+            return TYPE_VERTICAL;
         }
-        return INNERTYPE2;
+        return TYPE_HORIZOTAL;
     }
 
-    static class InnerVH extends RecyclerView.ViewHolder{
+    static class InnerVHVertical extends RecyclerView.ViewHolder{
         ImageView logoToon;
         TextView nameToon, chapter;
-        public InnerVH(@NonNull View itemView) {
+        public InnerVHVertical(@NonNull View itemView) {
             super(itemView);
             logoToon = itemView.findViewById(R.id.logo_toon);
             nameToon = itemView.findViewById(R.id.name_toon);
@@ -73,8 +77,29 @@ public class InnerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         }
 
         public void bindView(Content content){
+            String url = "https://dev-cdn.funtoon.vn/" + content.getVerticalLogo();
+            LoadImage.Companion.loadImage(url, logoToon, 20);
+            nameToon.setText(content.getComicName());
+            if(content.getNewestChapter() == null){
+                chapter.setVisibility(View.INVISIBLE);
+                return;
+            }
+            chapter.setText("Chương " + content.getNewestChapter());
+        }
+    }
+
+    static class InnerVHHorizontal extends RecyclerView.ViewHolder{
+        ImageView logoToon;
+        TextView nameToon;
+        public InnerVHHorizontal(@NonNull View itemView) {
+            super(itemView);
+            logoToon = itemView.findViewById(R.id.logo_toon);
+            nameToon = itemView.findViewById(R.id.name_toon);
+        }
+
+        public void bindView(Content content){
             String url = "https://dev-cdn.funtoon.vn/" + content.getHorizontalLogo();
-            LoadImage.Companion.loadImage(url, logoToon);
+            LoadImage.Companion.loadImage(url, logoToon, 20);
             nameToon.setText(content.getComicName());
         }
     }

@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    android:layout_marginEnd="5dp"
-    android:layout_marginStart="5dp"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="105dp"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="220dp"
     android:layout_height="wrap_content">
 
     <ImageView
+        android:layout_marginEnd="10dp"
         android:scaleType="centerCrop"
         android:adjustViewBounds="true"
         android:id="@+id/logo_toon"
-        android:src="@drawable/logotoon"
-        android:layout_width="105dp"
-        android:layout_height="140dp"/>
+        android:src="@drawable/horizon_logo322"
+        android:layout_width="220dp"
+        android:layout_height="140dp"
+        android:layout_marginRight="10dp" />
 
     <TextView
         android:id="@+id/name_toon"
@@ -27,11 +26,4 @@
         android:textColor="@color/textBlack"
         android:textSize="14sp" />
 
-    <TextView
-        android:layout_marginTop="5dp"
-        android:id="@+id/chapter"
-        android:text="Chapter 1"
-        android:layout_below="@+id/name_toon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
 </RelativeLayout>

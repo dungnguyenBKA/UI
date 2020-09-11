@@ -1,24 +1,29 @@
+
 package com.example.ui.model;
+
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.util.List;
-
 public class Category {
-    @SerializedName("type")
-    private String type;
-    @SerializedName("typeName")
-    private String typeName;
-    @SerializedName("orderIndex")
-    private int orderIndex;
-    @SerializedName("content")
-    private List<Content> content;
 
-    public Category(String type, String typeName, int orderIndex, List<Content> content) {
-        this.type = type;
-        this.typeName = typeName;
-        this.orderIndex = orderIndex;
-        this.content = content;
-    }
+    @SerializedName("type")
+    @Expose
+    private String type;
+    @SerializedName("categoryId")
+    @Expose
+    private String categoryId;
+    @SerializedName("categoryCode")
+    @Expose
+    private String categoryCode;
+    @SerializedName("categoryEngName")
+    @Expose
+    private String categoryEngName;
+    @SerializedName("categoryVietName")
+    @Expose
+    private String categoryVietName;
+    @SerializedName("categorySlug")
+    @Expose
+    private String categorySlug;
 
     public String getType() {
         return type;
@@ -28,27 +33,44 @@ public class Category {
         this.type = type;
     }
 
-    public String getTypeName() {
-        return typeName;
+    public String getCategoryId() {
+        return categoryId;
     }
 
-    public void setTypeName(String typeName) {
-        this.typeName = typeName;
+    public void setCategoryId(String categoryId) {
+        this.categoryId = categoryId;
     }
 
-    public int getOrderIndex() {
-        return orderIndex;
+    public String getCategoryCode() {
+        return categoryCode;
     }
 
-    public void setOrderIndex(int orderIndex) {
-        this.orderIndex = orderIndex;
+    public void setCategoryCode(String categoryCode) {
+        this.categoryCode = categoryCode;
     }
 
-    public List<Content> getContent() {
-        return content;
+    public String getCategoryEngName() {
+        return categoryEngName;
     }
 
-    public void setContent(List<Content> content) {
-        this.content = content;
+    public void setCategoryEngName(String categoryEngName) {
+        this.categoryEngName = categoryEngName;
     }
+
+    public String getCategoryVietName() {
+        return categoryVietName;
+    }
+
+    public void setCategoryVietName(String categoryVietName) {
+        this.categoryVietName = categoryVietName;
+    }
+
+    public String getCategorySlug() {
+        return categorySlug;
+    }
+
+    public void setCategorySlug(String categorySlug) {
+        this.categorySlug = categorySlug;
+    }
+
 }

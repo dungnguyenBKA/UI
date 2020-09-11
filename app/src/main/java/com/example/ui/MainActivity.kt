@@ -2,6 +2,8 @@ package com.example.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MotionEvent
+import androidx.recyclerview.widget.RecyclerView
 import com.example.ui.adapter.CategoryAdapter
 import com.example.ui.api.Service
 import com.example.ui.model.Data
@@ -60,6 +62,7 @@ class MainActivity : AppCompatActivity() {
     private fun handleData(data: List<Datum>) {
         val adapter = CategoryAdapter()
         listcategory_rv.adapter = adapter
+        listcategory_rv.isNestedScrollingEnabled = false
         adapter.updateListDatum(data)
     }
 }

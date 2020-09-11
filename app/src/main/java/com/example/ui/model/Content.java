@@ -13,15 +13,48 @@ public class Content {
     @SerializedName("comicName")
     @Expose
     private String comicName;
-    @SerializedName("type")
+    @SerializedName("verticalLogo")
     @Expose
-    private String type;
+    private String verticalLogo;
     @SerializedName("slug")
     @Expose
     private String slug;
+    @SerializedName("type")
+    @Expose
+    private String type;
+    @SerializedName("chapCount")
+    @Expose
+    private Integer chapCount;
+    @SerializedName("newestChapter")
+    @Expose
+    private String newestChapter;
+    @SerializedName("adultContent")
+    @Expose
+    private Boolean adultContent;
+    @SerializedName("status")
+    @Expose
+    private String status;
+    @SerializedName("viewCount")
+    @Expose
+    private Integer viewCount;
+    @SerializedName("likedCount")
+    @Expose
+    private Integer likedCount;
+    @SerializedName("categories")
+    @Expose
+    private List<Category> categories = null;
     @SerializedName("author")
     @Expose
     private Author_ author;
+    @SerializedName("averageRate")
+    @Expose
+    private Integer averageRate;
+    @SerializedName("avgRate")
+    @Expose
+    private Double avgRate;
+    @SerializedName("reviewCount")
+    @Expose
+    private Integer reviewCount;
     @SerializedName("horizontalLogo")
     @Expose
     private String horizontalLogo;
@@ -30,7 +63,7 @@ public class Content {
     private String categoryVietName;
     @SerializedName("comics")
     @Expose
-    private List<Object> comics = null;
+    private List<Content> comics = null;
     @SerializedName("comicsReviewNewest")
     @Expose
     private List<Object> comicsReviewNewest = null;
@@ -51,12 +84,12 @@ public class Content {
         this.comicName = comicName;
     }
 
-    public String getType() {
-        return type;
+    public String getVerticalLogo() {
+        return verticalLogo;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setVerticalLogo(String verticalLogo) {
+        this.verticalLogo = verticalLogo;
     }
 
     public String getSlug() {
@@ -67,12 +100,100 @@ public class Content {
         this.slug = slug;
     }
 
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public Integer getChapCount() {
+        return chapCount;
+    }
+
+    public void setChapCount(Integer chapCount) {
+        this.chapCount = chapCount;
+    }
+
+    public String getNewestChapter() {
+        return newestChapter;
+    }
+
+    public void setNewestChapter(String newestChapter) {
+        this.newestChapter = newestChapter;
+    }
+
+    public Boolean getAdultContent() {
+        return adultContent;
+    }
+
+    public void setAdultContent(Boolean adultContent) {
+        this.adultContent = adultContent;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public Integer getViewCount() {
+        return viewCount;
+    }
+
+    public void setViewCount(Integer viewCount) {
+        this.viewCount = viewCount;
+    }
+
+    public Integer getLikedCount() {
+        return likedCount;
+    }
+
+    public void setLikedCount(Integer likedCount) {
+        this.likedCount = likedCount;
+    }
+
+    public List<Category> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(List<Category> categories) {
+        this.categories = categories;
+    }
+
     public Author_ getAuthor() {
         return author;
     }
 
     public void setAuthor(Author_ author) {
         this.author = author;
+    }
+
+    public Integer getAverageRate() {
+        return averageRate;
+    }
+
+    public void setAverageRate(Integer averageRate) {
+        this.averageRate = averageRate;
+    }
+
+    public Double getAvgRate() {
+        return avgRate;
+    }
+
+    public void setAvgRate(Double avgRate) {
+        this.avgRate = avgRate;
+    }
+
+    public Integer getReviewCount() {
+        return reviewCount;
+    }
+
+    public void setReviewCount(Integer reviewCount) {
+        this.reviewCount = reviewCount;
     }
 
     public String getHorizontalLogo() {
@@ -91,11 +212,11 @@ public class Content {
         this.categoryVietName = categoryVietName;
     }
 
-    public List<Object> getComics() {
+    public List<Content> getComics() {
         return comics;
     }
 
-    public void setComics(List<Object> comics) {
+    public void setComics(List<Content> comics) {
         this.comics = comics;
     }
 

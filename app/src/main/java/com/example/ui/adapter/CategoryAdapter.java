@@ -1,12 +1,14 @@
 package com.example.ui.adapter;
 
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ui.R;
@@ -38,21 +40,21 @@ public class CategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             }
             case TYPE1 : {
                 vh = new ViewHolderType1(
-                        LayoutInflater.from(parent.getContext()).inflate(R.layout.category_item1, parent, false)
+                        LayoutInflater.from(parent.getContext()).inflate(R.layout.category_item, parent, false)
                 );
                 break;
             }
 
             case TYPE2 : {
                 vh = new ViewHolderType2(
-                        LayoutInflater.from(parent.getContext()).inflate(R.layout.category_item1, parent, false)
+                        LayoutInflater.from(parent.getContext()).inflate(R.layout.category_item, parent, false)
                 );
                 break;
             }
 
             case TYPE3 : {
                 vh = new ViewHolderType3(
-                        LayoutInflater.from(parent.getContext()).inflate(R.layout.category_item1, parent, false)
+                        LayoutInflater.from(parent.getContext()).inflate(R.layout.category_item, parent, false)
                 );
                 break;
             }
@@ -60,7 +62,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
             case TYPE4 : {
                 vh = new ViewHolderType4(
-                        LayoutInflater.from(parent.getContext()).inflate(R.layout.category_item1, parent, false)
+                        LayoutInflater.from(parent.getContext()).inflate(R.layout.category_item, parent, false)
                 );
                 break;
             }
@@ -73,7 +75,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             }
 
             default: vh = new ViewHolderType3(
-                    LayoutInflater.from(parent.getContext()).inflate(R.layout.category_item1, parent, false)
+                    LayoutInflater.from(parent.getContext()).inflate(R.layout.category_item, parent, false)
             );
         }
 
@@ -168,7 +170,36 @@ public class CategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         }
     }
 
-    static class ViewHolderType2 extends RecyclerView.ViewHolder{
+    static class ViewHolder extends RecyclerView.ViewHolder{
+        public ViewHolder(@NonNull View itemView) {
+            super(itemView);
+        }
+
+        void smoothSwipe(RecyclerView innerRv){
+            innerRv.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
+                @Override
+                public boolean onInterceptTouchEvent(@NonNull RecyclerView rv, @NonNull MotionEvent e) {
+                    if (e.getAction() == MotionEvent.ACTION_DOWN &&
+                            rv.getScrollState() == RecyclerView.SCROLL_STATE_SETTLING) {
+                        rv.stopScroll();
+                    }
+                    return false;
+                }
+
+                @Override
+                public void onTouchEvent(@NonNull RecyclerView rv, @NonNull MotionEvent e) {
+
+                }
+
+                @Override
+                public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
+
+                }
+            });
+        }
+    }
+
+    static class ViewHolderType2 extends ViewHolder{
         TextView cateName;
         TextView cateOpt;
         RecyclerView innerRv;
@@ -180,6 +211,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         }
 
         void bindView(Datum datum){
+            //this.smoothSwipe(innerRv);
             cateName.setText(datum.getTypeName());
             cateOpt.setText("Xem tất cả");
             InnerAdapter innerAdapter = new InnerAdapter();
@@ -188,7 +220,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         }
     }
 
-    static class ViewHolderType3 extends RecyclerView.ViewHolder{
+    static class ViewHolderType3 extends ViewHolder{
         TextView cateName;
         TextView cateOpt;
         RecyclerView innerRv;
@@ -200,6 +232,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         }
 
         void bindView(Datum datum){
+            this.smoothSwipe(innerRv);
             cateName.setText(datum.getTypeName());
             cateOpt.setText("Xem tất cả");
             InnerAdapter innerAdapter = new InnerAdapter();
@@ -208,7 +241,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         }
     }
 
-    static class ViewHolderType4 extends RecyclerView.ViewHolder{
+    static class ViewHolderType4 extends ViewHolder{
         TextView cateName;
         TextView cateOpt;
         RecyclerView innerRv;
@@ -222,13 +255,14 @@ public class CategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         void bindView(Datum datum){
             cateName.setText(datum.getTypeName());
             cateOpt.setText("Xem tất cả");
-            InnerAdapter innerAdapter = new InnerAdapter();
+            InnerGridAdapter innerAdapter = new InnerGridAdapter();
+            innerRv.setLayoutManager(new GridLayoutManager(innerRv.getContext(), 3, GridLayoutManager.HORIZONTAL, false));
             innerRv.setAdapter(innerAdapter);
             innerAdapter.setContentList(datum.getContent());
         }
     }
 
-    static class ViewHolderType5 extends RecyclerView.ViewHolder{
+    static class ViewHolderType5 extends ViewHolder{
         RecyclerView innerRv;
         public ViewHolderType5(@NonNull View itemView) {
             super(itemView);

@@ -8,6 +8,7 @@ import com.example.ui.adapter.CategoryAdapter
 import com.example.ui.api.Service
 import com.example.ui.model.Data
 import com.example.ui.model.Datum
+import com.example.ui.screen.testanimation.AnimationActivity
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Observer
@@ -48,6 +49,8 @@ class MainActivity : AppCompatActivity() {
                     handleError(e)
                 }
             })
+
+        AnimationActivity.start(this);
     }
 
     private fun handleError(e: Throwable?) {

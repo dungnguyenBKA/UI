@@ -158,7 +158,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_marginStart="13dp"
+        android:clipToPadding="false"
         android:layout_marginTop="20dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         android:orientation="horizontal"
@@ -166,6 +166,5 @@
         android:layout_below="@id/presenter"
         android:id="@+id/list_toon"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="13dp" />
+        android:layout_height="wrap_content" />
 </RelativeLayout>

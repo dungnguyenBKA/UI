@@ -48,7 +48,7 @@
         <androidx.recyclerview.widget.RecyclerView
             tools:listitem="@layout/category_item"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            android:id="@+id/listcategory_rv"
+            android:id="@+id/rv_list_category_home"
             android:layout_below="@id/noti_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>

@@ -8,7 +8,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.ui"
-        minSdkVersion 16
+        minSdkVersion 21
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -24,6 +24,10 @@ android {
     }
     compileOptions {
         targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    buildFeatures {
+        viewBinding = true
     }
 }
 
@@ -59,4 +63,10 @@ dependencies {
 
     // card view
     implementation "androidx.cardview:cardview:1.0.0"
+
+    // Lifecycle components
+    implementation "android.arch.lifecycle:extensions:1.1.1"
+    annotationProcessor "android.arch.lifecycle:compiler:1.1.1"
+    //ViewModel
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0"
 }

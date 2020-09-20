@@ -1,71 +1,26 @@
 package com.example.ui
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
-import android.view.MotionEvent
-import androidx.recyclerview.widget.RecyclerView
-import com.example.ui.adapter.CategoryAdapter
-import com.example.ui.api.Service
-import com.example.ui.model.Data
-import com.example.ui.model.Datum
+import android.view.LayoutInflater
+import androidx.viewbinding.ViewBinding
+import com.example.ui.base.BaseActivity
+import com.example.ui.databinding.MainActivityBinding
+import com.example.ui.screen.showdatamvvm.HomeActivity
 import com.example.ui.screen.testanimation.AnimationActivity
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
-import io.reactivex.rxjava3.core.Observable
-import io.reactivex.rxjava3.core.Observer
-import io.reactivex.rxjava3.core.Scheduler
-import io.reactivex.rxjava3.disposables.CompositeDisposable
-import io.reactivex.rxjava3.disposables.Disposable
-import io.reactivex.rxjava3.disposables.DisposableContainer
-import io.reactivex.rxjava3.schedulers.Schedulers
-import kotlinx.android.synthetic.main.home.*
+import kotlinx.android.synthetic.main.main_activity.*
+import kotlinx.android.synthetic.main.main_activity.view.*
 
-class MainActivity : AppCompatActivity() {
-    val disposables = CompositeDisposable()
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.home)
-
-        val homeData = Service.getInstance().api.homepageData
-
-        homeData.observeOn(AndroidSchedulers.mainThread())
-            .subscribeOn(Schedulers.io())
-            .subscribe(object : Observer<Data>{
-                override fun onComplete() {
-                }
-
-                override fun onSubscribe(d: Disposable?) {
-                    disposables.add(d)
-                }
-
-                override fun onNext(dataRes: Data?) {
-                    if(dataRes == null){
-                        return
-                    }
-                    handleData(dataRes.data)
-                }
-
-                override fun onError(e: Throwable?) {
-                    handleError(e)
-                }
-            })
-
-        AnimationActivity.start(this);
+class MainActivity : BaseActivity() {
+    private lateinit var viewBinding : MainActivityBinding
+    override fun getViewBinding(): ViewBinding {
+        return viewBinding
     }
 
-    private fun handleError(e: Throwable?) {
-
+    override fun initViewBinding(inflater: LayoutInflater) {
+        viewBinding = MainActivityBinding.inflate(inflater)
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        disposables.clear()
-    }
-
-    private fun handleData(data: List<Datum>) {
-        val adapter = CategoryAdapter()
-        listcategory_rv.adapter = adapter
-        listcategory_rv.isNestedScrollingEnabled = false
-        adapter.updateListDatum(data)
+    override fun configView() {
+        viewBinding.root.btn_animation.setOnClickListener { AnimationActivity.start(this) }
+        viewBinding.root.btn_home.setOnClickListener { HomeActivity.start(this) }
     }
 }

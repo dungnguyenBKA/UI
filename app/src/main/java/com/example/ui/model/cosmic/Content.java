@@ -1,5 +1,5 @@
 
-package com.example.ui.model;
+package com.example.ui.model.cosmic;
 
 import java.util.List;
 import com.google.gson.annotations.Expose;
@@ -13,6 +13,26 @@ public class Content {
     @SerializedName("comicName")
     @Expose
     private String comicName;
+    @SerializedName("name")
+    @Expose
+    private String name;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public List<Content> getNovels() {
+        return novels;
+    }
+
+    public void setNovels(List<Content> novels) {
+        this.novels = novels;
+    }
+
     @SerializedName("verticalLogo")
     @Expose
     private String verticalLogo;
@@ -64,6 +84,9 @@ public class Content {
     @SerializedName("comics")
     @Expose
     private List<Content> comics = null;
+    @SerializedName("novels")
+    @Expose
+    private List<Content> novels = null;
     @SerializedName("comicsReviewNewest")
     @Expose
     private List<Object> comicsReviewNewest = null;

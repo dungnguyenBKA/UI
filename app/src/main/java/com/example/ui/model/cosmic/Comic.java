@@ -1,5 +1,5 @@
 
-package com.example.ui.model;
+package com.example.ui.model.cosmic;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

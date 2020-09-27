@@ -1,5 +1,5 @@
 
-package com.example.ui.model;
+package com.example.ui.model.cosmic;
 
 import java.util.List;
 import com.google.gson.annotations.Expose;

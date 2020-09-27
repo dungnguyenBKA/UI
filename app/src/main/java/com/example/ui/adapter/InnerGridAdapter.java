@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ui.R;
-import com.example.ui.model.Content;
+import com.example.ui.model.cosmic.Content;
 import com.example.ui.utils.LoadImage;
 
 import java.util.ArrayList;

@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ui.R;
-import com.example.ui.model.Content;
+import com.example.ui.model.cosmic.Content;
 import com.example.ui.utils.LoadImage;
 
 import java.util.ArrayList;
@@ -79,7 +79,7 @@ public class InnerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         public void bindView(Content content){
             String url = "https://dev-cdn.funtoon.vn/" + content.getVerticalLogo();
             LoadImage.Companion.loadImage(url, logoToon, 20);
-            nameToon.setText(content.getComicName());
+            nameToon.setText(content.getComicName() == null ? content.getName() : content.getComicName());
             if(content.getNewestChapter() == null){
                 chapter.setVisibility(View.INVISIBLE);
                 return;
@@ -100,7 +100,7 @@ public class InnerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         public void bindView(Content content){
             String url = "https://dev-cdn.funtoon.vn/" + content.getHorizontalLogo();
             LoadImage.Companion.loadImage(url, logoToon, 20);
-            nameToon.setText(content.getComicName());
+            nameToon.setText(content.getComicName() == null ? content.getName() : content.getComicName());
         }
     }
 }

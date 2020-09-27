@@ -4,16 +4,14 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 import com.example.ui.api.Service;
 
-import com.example.ui.model.Data;
-import com.example.ui.model.Datum;
+import com.example.ui.model.cosmic.Data;
+import com.example.ui.model.cosmic.Datum;
 import java.util.List;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.annotations.NonNull;
 import io.reactivex.rxjava3.core.Observer;
-import io.reactivex.rxjava3.core.Scheduler;
 import io.reactivex.rxjava3.disposables.Disposable;
-import io.reactivex.rxjava3.functions.Consumer;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class HomeViewModel extends ViewModel {
@@ -28,7 +26,7 @@ public class HomeViewModel extends ViewModel {
     }
 
     private void loadData() {
-        Service.getInstance().getApi().getHomepageData()
+        Service.getInstance().getApi().getNovelHomeData()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<Data>() {

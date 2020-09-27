@@ -1,6 +1,6 @@
 package com.example.ui.api;
 
-import com.example.ui.model.Data;
+import com.example.ui.model.cosmic.Data;
 
 import io.reactivex.rxjava3.core.Observable;
 import retrofit2.http.GET;
@@ -18,4 +18,16 @@ public interface Api {
             "ignore: true"
     })
     Observable<Data> getHomepageData();
+
+    String tokenNovel = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7Il9pZCI6IjVlNzllYTQ5NWQzZjBhNTRjY2UzNDhiYSIsIm5hbWUiOiJUw6BpIFThuqEgxJDhu6ljIn0sImlhdCI6MTYwMDQwNDYyNywiZXhwIjoxNjAwNDkxMDI3fQ.ALZK7Q7X4wiYmxQtncIDolvixjcTUMxK-zwpgy5IAMg";
+    @GET("novels/")
+    @Headers({
+            "token: "+tokenNovel,
+            "device_id: phuchoa3t",
+            "device: device name",
+            "version: 1.18.0",
+            "platform: android",
+            "ignore: true"
+    })
+    Observable<Data> getNovelHomeData();
 }

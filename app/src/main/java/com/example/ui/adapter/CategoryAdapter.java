@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ui.R;
-import com.example.ui.model.Datum;
+import com.example.ui.model.cosmic.Datum;
 import com.example.ui.utils.LoadImage;
 
 import java.util.ArrayList;

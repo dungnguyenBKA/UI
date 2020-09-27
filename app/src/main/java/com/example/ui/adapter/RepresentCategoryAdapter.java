@@ -3,15 +3,13 @@ package com.example.ui.adapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ui.R;
-import com.example.ui.model.Content;
-import com.example.ui.utils.LoadImage;
+import com.example.ui.model.cosmic.Content;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,7 +61,7 @@ public class RepresentCategoryAdapter extends RecyclerView.Adapter<RecyclerView.
             cate_name.setText(content.getCategoryVietName());
 
             InnerAdapter innerAdapter = new InnerAdapter();
-            innerAdapter.setContentList(content.getComics());
+            innerAdapter.setContentList(content.getComics() == null ? content.getNovels() : content.getComics());
             innerRv.setAdapter(innerAdapter);
         }
     }

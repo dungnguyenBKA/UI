@@ -21,7 +21,7 @@ import com.example.ui.R;
 import com.example.ui.adapter.CategoryAdapter;
 import com.example.ui.base.BaseActivity;
 import com.example.ui.databinding.HomeBinding;
-import com.example.ui.model.Datum;
+import com.example.ui.model.cosmic.Datum;
 import com.example.ui.screen.showdatamvvm.viewmodel.HomeViewModel;
 
 import java.util.List;

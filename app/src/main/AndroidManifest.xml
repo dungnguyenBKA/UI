@@ -10,7 +10,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".screen.showdatamvvm.HomeActivity"></activity>
+        <activity android:name=".screen.customview.CustomViewActivity"></activity>
+        <activity android:name=".screen.di.DiExampleActivity" />
+        <activity android:name=".screen.testSpan.CustomTextActivity" />
+        <activity
+            android:name=".screen.collapsingsceen.ScrollingActivity"
+            android:label="@string/title_activity_scrolling"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".screen.showdatamvvm.HomeActivity" />
         <activity android:name=".screen.testanimation.AnimationActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
